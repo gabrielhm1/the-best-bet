@@ -1,6 +1,6 @@
 # TBO - The Best Odd
 Engenharia de Software (DCC603) - UFMG 
-The Best Bet consiste num comparador de odds (chance de um evento ocorrer) entre as principais casas de apostas desportivas em operação no Brasil, visando possibilitar 
+The Best Odd consiste num comparador de odds (chance de um evento ocorrer) entre as principais casas de apostas desportivas em operação no Brasil, visando possibilitar 
 a redução de perdas e maximização dos ganhos dos apostadores.
 
 #  Funcionalidades
