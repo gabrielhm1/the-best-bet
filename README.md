@@ -24,24 +24,23 @@ a redução de perdas e maximização dos ganhos dos apostadores.
 # Backlog
 
 **Tarefas técnicas**
-	- [ ] UI design
-	- [ ] Configurar interface web
-  - [ ] Configurar requisição de dados das casas de aposta
+1. UI design
+2. Configurar interface web
+3. Configurar requisição de dados das casas de aposta
 
 **Como usuário, gostaria de ver os jogos que estão sendo negociados nas casas de aposta**
-	- [ ] Criar página inicial, onde serão exibidos as partidas cotadas
-	- [ ] Fazer requisição dos dados nas casas de aposta
-	- [ ] Criar lista interativa, que indexe as partidas dos respectivos campeonatos
+1. Criar página inicial, onde serão exibidos as partidas cotadas
+2. Fazer requisição dos dados nas casas de aposta
+3. Criar lista interativa, que indexe as partidas dos respectivos campeonatos
 
 **Como usuário, gostaria de ver as odds de uma dada partida**
-	- [ ] Gerar link na página inicial que redirecione para a página individual da partida  
-	- [ ] Requisitar dados da partida nas casas de aposta
-	- [ ] Tratar os dados e exibí-los em categorias (e.g. quem ganha/perde, dupla-hipótese), com a respectivas odds
-	- [ ] Gerar página-padrão que exiba as apostas possíveis naquela partida
+1. Gerar link na página inicial que redirecione para a página individual da partida  
+2. Requisitar dados da partida nas casas de aposta
+3. Tratar os dados e exibí-los em categorias (e.g. quem ganha/perde, dupla-hipótese), com a respectivas odds
+4. Gerar página-padrão que exiba as apostas possíveis naquela partida
 
 **Como usuário, quero ver qual estratégia posso adotar para não perder dinheiro**
-	- [ ] Obter dados de múltiplas casas de aposta
-	- [ ] Tratar dados e armazenar dados em um banco, categorizados por categoria de aposta, de forma que permita a posterior comparação
-	- [ ] Calcular a fatia que deve ser apostada em cada casa e em que resultado
- 	- [ ] Exibir "calculadora", que mostra o percentil, de um dado montante, que deve ser apostada em cada casa e resultado, e exibir o percentual de lucro garantido da operação.
-  
+1. Obter dados de múltiplas casas de aposta
+2. Tratar dados e armazenar dados em um banco, categorizados por categoria de aposta, de forma que permita a posterior comparação
+3. Calcular a fatia que deve ser apostada em cada casa e em que resultado
+4. Exibir "calculadora", que mostra o percentil, de um dado montante, que deve ser apostada em cada casa e resultado, e exibir o percentual de lucro garantido da operação.
