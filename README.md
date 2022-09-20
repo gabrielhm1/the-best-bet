@@ -21,7 +21,7 @@ a redução de perdas e maximização dos ganhos dos apostadores.
 4. HTML
 5. CSS
 
-#Backlog
+# Backlog
 
 **Tarefas técnicas**
 	- [ ] UI design
