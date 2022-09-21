@@ -29,15 +29,18 @@ a redução de perdas e maximização dos ganhos dos apostadores.
 3. Configurar requisição de dados das casas de aposta
 
 **Como usuário, gostaria de ver os jogos que estão sendo negociados nas casas de aposta**
-1. Criar página inicial, onde serão exibidos as partidas cotadas
-2. Fazer requisição dos dados nas casas de aposta
-3. Criar lista interativa, que indexe as partidas dos respectivos campeonatos
+1. Criar a rota principal(back-end), utilizando flask
+2. Criar página inicial(front-end), onde serão exibidos as partidas cotadas
+3. Fazer requisição dos dados nas casas de aposta
+4. Criar lista interativa, que indexe as partidas dos respectivos campeonatos
+
 
 **Como usuário, gostaria de ver as odds de uma dada partida**
-1. Gerar link na página inicial que redirecione para a página individual da partida  
-2. Requisitar dados da partida nas casas de aposta
-3. Tratar os dados e exibí-los em categorias (e.g. quem ganha/perde, dupla-hipótese), com a respectivas odds
-4. Gerar página-padrão que exiba as apostas possíveis naquela partida
+1. Gerar link na página inicial que redirecione para a página individual da partida
+2. Criar a rota de cada partida(back-end).
+3. Requisitar dados da partida nas casas de aposta.
+4. Tratar os dados e exibí-los em categorias (e.g. quem ganha/perde, dupla-hipótese), com a respectivas odds
+5. Gerar página-padrão que exiba as apostas possíveis naquela partida
 
 **Como usuário, quero ver qual estratégia posso adotar para não perder dinheiro**
 1. Obter dados de múltiplas casas de aposta
