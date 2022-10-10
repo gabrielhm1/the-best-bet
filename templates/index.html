@@ -8,5 +8,10 @@
 </head>
 <body>
     <h1>The Best Bet</h1>
+    <ul id="matchs">
+        {% for item in matchs %}
+            <li><a href="/odds/{{ item.id }}">{{ item.host_team }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
