@@ -1,33 +1,21 @@
 from flask import Flask,render_template
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+# from datetime import date
+from datetime import datetime,date
+from models.tables import db
+from models.tables import Match
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/postgres'
+db.init_app(app)
+
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    date_today = date.today()
 
-class Match(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    host_team = db.Column(db.String(200), nullable=False)
-    away_team = db.Column(db.String(200), nullable=False)
-    match_date = db.Column(db.DateTime, nullable=False)
-    
-    
-    odd = db.relationship("Odd",backref="match")
+    matchs = Match.query.filter( date_today <= Match.match_date).all()
 
-class Odd(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    company = db.Column(db.String(2000))
-    host_win = db.Column(db.Integer)
-    away_win = db.Column(db.Integer)
-    match_draw = db.Column(db.Integer)
-
-    match_id = db.Column(db.Integer, db.ForeignKey("match.id"))
-
+    return render_template("index.html",matchs=matchs)
 
 @app.route('/odds/<int:Number>')
 def odd(Number):
