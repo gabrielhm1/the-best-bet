@@ -30,9 +30,10 @@ def compare_odds(match_id):
         if odd.away_win > best_odd["host_win"]["odd"]:
             best_odd["away_win"]["odd"] = odd.away_win
             best_odd["away_win"]["company"] = odd.company
-        if odd.match_draw > best_odd["host_win"]["odd"]:
-            best_odd["match_draw"]["odd"] = odd.match_draw
-            best_odd["match_draw"]["company"] = odd.company
+        if odd.match_draw > best_odd["draw"]["odd"]:
+            best_odd["draw"]["odd"] = odd.match_draw
+            best_odd["draw"]["company"] = odd.company
+    # print(best_odd)
     return best_odd
 
 def get_best_odd(match_id=null,matchs=null):
@@ -42,17 +43,18 @@ def get_best_odd(match_id=null,matchs=null):
     elif match_id == null:
         matchs_info = []
         for match in matchs:
-            best_odd = get_best_odd(match_id=match.id)
-            matchs_info.append(vars(match).update(best_odd))
+            best_odd = compare_odds(match.id)
+            match_dict = vars(match)
+            matchs_info.append(dict(match_dict, **best_odd))
         return matchs_info
 
 
 @app.route('/')
 def index():
     date_today = date.today()
-    matchs = Match.query.filter( date_today <= Match.match_date).all()
+    matchs = Match.query.filter( date_today >= Match.match_date).all()
     matchs_info  = get_best_odd(matchs=matchs)
-
+    print(matchs_info)
     return render_template("index.html",content=matchs_info)
 
 @app.route('/odds/<int:match_id>')
