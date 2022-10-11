@@ -13,32 +13,30 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/web.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Best Bet</title>
+
 </head>
 <body>
-    <h1>The Best Bet</h1>
     <div class="container">
-        <h2>Bordered Table</h2>
-        <p>The .table-bordered class adds borders to a table:</p>            
+        <h1 style="font-family: Calibri; font-size: 10rem ; color: green; font-weight: bold">The Best Bet</h1>
+        <h2 style="color: rgb(255, 217, 63)">Brasileirão - Série A</h2>
+        <p style="font-style:italic">Selecione uma partida para ter acesso à calculadora de lucro garantido</p>            
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>Partida</th>
-              <th>Vitória Man</th>
+              <th>Vitória Mandante</th>
               <th>Empate</th>
-              <th>Vitória Vis</th>
+              <th>Vitória Visitante</th>
             </tr>
           </thead>
           <tbody>
             {% for item in matchs %}
-                <a href="/odds/{{ item.id }}">
-                <tr>
-                     <td>{{ item.host_team }} VS {{ item.away_team }} </td>
+                <tr id="matchs">
+                     <td><a href="/odds/{{ item.id}}">{{ item.host_team }} VS {{ item.away_team }}</a></td>
                      <td>{{ item.host_win }}</td>
                      <td>{{ item.draw }}</td>
                      <td>{{ item.away_win }}</td>
                 </tr>
-                </a>
             {% endfor %}
           </tbody>
         </table>
