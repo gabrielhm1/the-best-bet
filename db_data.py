@@ -1,4 +1,5 @@
-from models import Match,Odd
+from models.match import Match
+from models.odd import Odd
 from app import db
 from datetime import datetime
 match =[
