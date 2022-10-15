@@ -1,5 +1,5 @@
-from models.tables import db, Match,Odd
-from app import app
+from models import Match,Odd
+from app import db
 from datetime import datetime
 match =[
         Match(id=1,host_team="Atletico",away_team="Cruzeiro",match_date=datetime.now()),
