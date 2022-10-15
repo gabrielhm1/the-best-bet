@@ -3,9 +3,6 @@ from flask import render_template
 from datetime import datetime,date
 from models import match
 
-@app.route('/a', methods=['GET'])
-def teste():
-    return 'teste'
 
 @app.route('/')
 def index():
@@ -25,3 +22,7 @@ def odd(match_id):
     }
 
     return render_template("odd.html", content = content)
+
+@app.route('/match', methods=['POST'])
+def add_match():
+    return match.insert_match()
