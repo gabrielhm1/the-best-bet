@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/web.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-family: Calibri; font-size: 10rem ; color: green; font-weight: bold">The Best Bet</h1>
+        <h2 style="color: rgb(255, 217, 63)">Brasileirão - Série A</h2>
+        <p style="font-style:italic">Selecione uma partida para ter acesso à calculadora de lucro garantido</p>            
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Partida</th>
+              <th>Vitória Mandante</th>
+              <th>Empate</th>
+              <th>Vitória Visitante</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in content %}
+                <tr id="matchs">
+                     <td><a href="/odds/{{ item.id}}">{{ item.host_team }} VS {{ item.away_team }}</a></td>
+                     <td>{{ item.host_win }}</td>
+                     <td>{{ item.draw }}</td>
+                     <td>{{ item.away_win }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+      
+
+</body>
+</html>
