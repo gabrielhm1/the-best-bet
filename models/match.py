@@ -1,5 +1,4 @@
 from datetime import datetime
-from ssl import match_hostname
 from app import db
 from .odd import Odd
 from flask import request, jsonify
@@ -39,7 +38,7 @@ def get_best_odd(match):
         if odd.host_win > best_odd["host_win"]["odd"]:
             best_odd["host_win"]["odd"] = odd.host_win
             best_odd["host_win"]["company"] = odd.company
-        if odd.away_win > best_odd["host_win"]["odd"]:
+        if odd.away_win > best_odd["away_win"]["odd"]:
             best_odd["away_win"]["odd"] = odd.away_win
             best_odd["away_win"]["company"] = odd.company
         if odd.match_draw > best_odd["draw"]["odd"]:
@@ -75,3 +74,26 @@ def insert_match():
         return jsonify({'mensagem': 'Cadastro Realizado!'}), 201
     except:
         return jsonify({'mensagem': 'Erro no cadastro!'}), 500
+
+def update_match(match):
+    odds_list = []
+    try:
+        match.host_team = request.json['host_team']
+        match.away_team = request.json['away_team']
+        match.match_date = datetime.now()
+
+        for odd in request.json['odds']:
+            odd_insert = Odd(
+                company = odd['company'],
+                host_win = odd['host_win'],
+                away_win = odd['away_win'],
+                match_draw = odd['match_draw']
+            )
+            odds_list.append(odd_insert)
+        match.odd = odds_list
+
+        db.session.commit()
+
+        return jsonify({'mensagem': 'Match editado!'}), 201
+    except:
+        return jsonify({'mensagem': 'Erro ao atualizar dados!'}), 500
