@@ -47,7 +47,7 @@ def get_best_odd(match):
     return best_odd
 
 def get_all_data(match):
-    best_odd = get_best_odd(match)
+    best_odd = {"best_odd": get_best_odd(match)}
     match_info = dict(match.to_json(), **best_odd)
     return match_info
 
@@ -77,11 +77,14 @@ def insert_match():
 
 def update_match(match):
     odds_list = []
+    print(match)
+    print(request.json['host_team'])
+    print("segundo")
     try:
         match.host_team = request.json['host_team']
         match.away_team = request.json['away_team']
-        match.match_date = datetime.now()
-
+        # match.match_date = datetime.now()
+        print("1 - print")
         for odd in request.json['odds']:
             odd_insert = Odd(
                 company = odd['company'],
@@ -93,6 +96,7 @@ def update_match(match):
         match.odd = odds_list
 
         db.session.commit()
+        print("2 - print")
 
         return jsonify({'mensagem': 'Match editado!'}), 201
     except:

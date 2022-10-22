@@ -1,12 +1,15 @@
 from app import app
 from flask import render_template
 from datetime import datetime,date
-from models import match
+from models import match,odd
+from flask import request
 
 
 @app.route('/')
 def index():
     date_today = date.today()
+    item = match.Match.query.filter_by(host_team="Atletico").filter_by(away_team="Cruzeiro").first()
+    print(item)
     matchs_data = []
     matchs = match.Match.query.filter( date_today >= match.Match.match_date).all()
     for this_match in matchs:
@@ -25,4 +28,16 @@ def odd(match_id):
 
 @app.route('/match', methods=['POST'])
 def add_match():
-    return match.insert_match()
+    try:
+        host = request.json['host_team']
+        away = request.json['away_team']
+        item = match.Match.query.filter_by(host_team=host).filter_by(away_team=away).first()
+        print(item)
+        if item is None:
+            return match.insert_match()
+        else:
+            print("update")
+            return match.update_match(item)
+    except:
+        print('erros')
+
