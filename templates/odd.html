@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/static/web.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Best Bet</title>
-</head>
+{% include 'nav.html' %}
+{% block content %}
 <body>
-    <h1>{{content.match.odd[0].host_win}} VS {{content}}</h1>
+    <div class="container">
+        <img src ="https://i.imgur.com/PmHa4a5.png">
+        <h1>{{content.match.host_team}} VS {{content.match.away_team}}</h1>
+        <h2>{{content.match_date}}</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Casa de apostas</th>
+                <th>Vitória do {{content.match.host_team}}</th>
+                <th>Empate</th>
+                <th>Vitória do {{content.match.away_team}}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for item in content.match.odd %}
+                <tr id="matchs">
+                    <td><span>{{item.company}}</span></td>
+                    <td><span>{{item.host_win}}</span></td>
+                    <td><span>{{item.match_draw}}</span></td>
+                    <td><span>{{item.away_win}}</span></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
+{% endblock %}
 </html>
 
