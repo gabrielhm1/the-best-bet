@@ -27,6 +27,23 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Melhor odd {{content.match.host_team}}</th>
+                <th>Melhor odd empate</th>
+                <th>Melhor odd {{content.match.away_team}}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span>{{content.match.best_odd.host_win.company}} - ODD {{content.match.best_odd.host_win.odd}}</span></td>
+                    <td><span>{{content.match.best_odd.draw.company}} - ODD {{content.match.best_odd.draw.odd}}</span></td>
+                    <td><span>{{content.match.best_odd.away_win.company}} - ODD {{content.match.best_odd.away_win.odd}}</span></td>
+                </tr>
+            </tbody>
+            </table>
     </div>
 </body>
 {% endblock %}
