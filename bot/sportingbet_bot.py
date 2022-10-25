@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
+import requests
 partidas = []
 
-with open(r"sportingbet.html", encoding="utf8") as fp:
+with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, 'html.parser')
-    
-    for index,item in enumerate(soup.find_all("div", class_="participants-pair-game")):
+    for index,item in enumerate(soup.find_all("div", class_="grid-event-wrapper")):
         print("partida", index)
         dados = {
             #"time1":"nome_time1",
@@ -14,19 +14,25 @@ with open(r"sportingbet.html", encoding="utf8") as fp:
             #"odd_visitante":123
         }
         times = item.find_all("div", class_="participant")
-        dados["mandante"] = times[0].text
-        dados["visitante"] = times[1].text
+        dados["host_team"] = times[0].text.replace(" ","")
+        dados["away_team"] = times[1].text.replace(" ","")
         
-        
-        for index_odd,odd in enumerate(soup.find_all("div", class_="option option-value ng-star-inserted")):
+        odds = {}
+        for index_odd,odd in enumerate(item.find_all("div", class_="option option-value ng-star-inserted")):
             print(index_odd,odd.text)
-            if index_odd%3 == 0:
-                dados["odd_mandante"] = odd.text
-            elif index_odd%3 == 1:
-                dados["odd_empate"] = odd.text
-            elif index_odd%3 == 2:
-                dados["odd_visitante"] = odd.text
+            if index_odd == 0:
+                odds["host_win"] = odd.text
+            elif index_odd == 1:
+                odds["match_draw"] = odd.text
+            elif index_odd == 2:
+                odds["away_win"] = odd.text
                 break
+            odds['company'] = 'sportingbet'
+            odd_dict = {'odds':[odds]}
+            match_info = dict(dados, **odd_dict)
         print(dados)
-        partidas.append(dados)
-print(partidas)
+        partidas.append(match_info)
+        
+for partida in partidas:
+    rqs = requests.post('http://localhost:5000/match', json=partida)
+    print(rqs.text)
