@@ -1,13 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/static/web.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Best Bet</title>
-</head>
-<body>
-    <h1>{{content.match.odd[0].host_win}} VS {{content}}</h1>
-</body>
-</html>
+  {% include 'nav.html' %} {% block content %}
+  <body>
+    <div class="container">
+      <img src="https://i.imgur.com/PmHa4a5.png" />
+      <h1>{{content.match.host_team}} VS {{content.match.away_team}}</h1>
+      <h2>{{content.match_date}}</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Casa de apostas</th>
+            <th>Vitória do {{content.match.host_team}}</th>
+            <th>Empate</th>
+            <th>Vitória do {{content.match.away_team}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in content.match.odd %}
+          <tr id="matchs">
+            <td><span>{{item.company}}</span></td>
+            <td><span>{{item.host_win}}</span></td>
+            <td><span>{{item.match_draw}}</span></td>
+            <td><span>{{item.away_win}}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Melhor odd {{content.match.host_team}}</th>
+            <th>Melhor odd empate</th>
+            <th>Melhor odd {{content.match.away_team}}</th>
+            <th>Lucro provável</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span
+                >{{content.match.best_odd.host_win.company}} - ODD
+                {{content.match.best_odd.host_win.odd}}</span
+              >
+            </td>
+            <td>
+              <span
+                >{{content.match.best_odd.draw.company}} - ODD
+                {{content.match.best_odd.draw.odd}}</span
+              >
+            </td>
+            <td>
+              <span
+                >{{content.match.best_odd.away_win.company}} - ODD
+                {{content.match.best_odd.away_win.odd}}</span
+              >
+            </td>
+            <td>
+              <span
+                >{{(100*(-1+1/((1/content.match.best_odd.host_win.odd)+(1/content.match.best_odd.draw.odd)+(1/content.match.best_odd.away_win.odd))))|round(2,
+                'common')}}%</span
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Valor a apostar no {{content.match.host_team}}</th>
+            <th>Valor a apostar no empate</th>
+            <th>Valor a apostar no {{content.match.away_team}}</th>
+          </tr>
+        </thead>
+        <div>
+          <label> Insira o valor da sua banca: </label><br>
+          <input type="text" id="input_id" name="fname" ></input>
+        </div>
+        <script>
+            function Calculo(intake){
+                var bet_values = {}
+                let data = JSON.parse('{{ content.match.best_odd | tojson }}');
+
+                bet_values['host_win'] = data.host_win.company + " - R$ " +  (intake*((1/data.host_win.odd)/ ((1/data.host_win.odd)+(1/data.draw.odd)+(1/data.away_win.odd)) ) ).toFixed(2)
+                
+                bet_values['draw']     = data.draw.company +  " -  R$ "    +  (intake*((1/data.draw.odd)/ ((1/data.host_win.odd)+(1/data.draw.odd)+(1/data.away_win.odd)) ) ).toFixed(2)
+                
+                bet_values['away_win'] = data.away_win.company + " - R$ " + (intake*((1/data.away_win.odd)/ ((1/data.host_win.odd)+(1/data.draw.odd)+(1/data.away_win.odd)) )).toFixed(2) 
+                
+                console.log(bet_values)
+                return bet_values;
+            }
+
+            console.log("começou")
+            var inputA = document.getElementById("input_id");
+            inputA.addEventListener("change", (event) => {
+                console.log("mudou")
+                console.log(document.getElementById("input_id").value)
+                result = Calculo(inputA.value)
+                document.getElementById("win_host").textContent = result['host_win']
+                document.getElementById("draw").textContent = result['draw']
+                document.getElementById("away_win").textContent = result['away_win']
+            });
+        </script>
+
+        <tbody>
+          <tr>
+            <td>
+              <span>
+                <p id="win_host">
+                    
+                </p>
+              </span>
+            </td>
+            <td>
+              <span> <p id="draw"> </p></span
+              >
+            </td>
+            <td>
+                <span>
+                    <p id = "away_win"></p>
+                </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  {% endblock %}
+</html>
