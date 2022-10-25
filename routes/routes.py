@@ -2,7 +2,7 @@ from app import app
 from flask import render_template
 from datetime import datetime,date
 from models import match,odd
-from flask import request
+from flask import request,jsonify
 
 
 @app.route('/')
@@ -37,5 +37,5 @@ def add_match():
         else:
             return match.update_match(item)
     except:
-        print('error')
+        return jsonify({'mensagem': 'Erro geral!'}), 500
 
