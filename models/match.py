@@ -54,17 +54,16 @@ def get_all_data(match):
 def insert_match():
     odds_list = []
     match = Match()
+    odd = request.json['odds']
     match.host_team = request.json['host_team']
     match.away_team = request.json['away_team']
     match.match_date = datetime.now()
-    for odd in request.json['odds']:
-        odd_insert = Odd(
-            company = odd['company'],
-            host_win = odd['host_win'],
-            away_win = odd['away_win'],
-            match_draw = odd['match_draw']
-        )
-        odds_list.append(odd_insert)
+    odd_insert = Odd(
+        company = odd['company'],
+        host_win = odd['host_win'],
+        away_win = odd['away_win'],
+        match_draw = odd['match_draw']
+    )
     match.odd = odds_list
 
     try:
