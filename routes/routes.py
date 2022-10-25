@@ -32,12 +32,10 @@ def add_match():
         host = request.json['host_team']
         away = request.json['away_team']
         item = match.Match.query.filter_by(host_team=host).filter_by(away_team=away).first()
-        print(item)
         if item is None:
             return match.insert_match()
         else:
-            print("update")
             return match.update_match(item)
     except:
-        print('erros')
+        print('error')
 
