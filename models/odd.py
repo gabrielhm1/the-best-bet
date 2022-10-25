@@ -18,18 +18,24 @@ class Odd(db.Model):
             "away_win": self.away_win,
             "match_draw": self.match_draw
         }
-def insert_odd():
-    odds_list = []
-    odd = Odd()
-    odd.company = request.json['company']
-    odd.host_win = request.json['host_win']
-    odd.away_win = request.json['away_win']
-    odd.match_draw = request.json['match_draw']
-    odd.match_id = request.json['match_id']
+def insert_odd(id_match):
+    item = request.json['odds']
+    check_exist = Odd.query.filter_by(company=item['company']).filter_by(match_id=id_match).first()
+    odd = Odd() if check_exist is None else check_exist 
+    odd.company = item['company']
+    odd.host_win = item['host_win']
+    odd.away_win = item['away_win']
+    odd.match_draw = item['match_draw']
+    odd.match_id = id_match
     
     try:
-        db.session.add(odd)
-        db.session.commit()
-        return jsonify({'mensagem': 'Cadastro Realizado!'}), 201
-    except:
+        if check_exist is None:
+            db.session.add(odd)
+            db.session.commit()
+            return jsonify({'mensagem': f'Odd adicionada a partida {id_match}!'}), 201
+        else:
+            db.session.commit()
+            return jsonify({'mensagem': f'Odd {odd.id} da partida {id_match} editada com sucesso!'}), 201
+
+    except Exception as e:
         return jsonify({'mensagem': 'Erro no cadastro!'}), 500
