@@ -29,5 +29,4 @@ with open(r"sportingbet.html", encoding="utf8") as fp:
                 break
         print(dados)
         partidas.append(dados)
-
 print(partidas)
