@@ -40,3 +40,4 @@ for partida in partidas:
     print(partida)
     rqs = requests.post('http://localhost:5000/match', json=partida)
     print(rqs.text)
+    

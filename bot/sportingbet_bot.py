@@ -36,3 +36,4 @@ with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
 for partida in partidas:
     rqs = requests.post('http://localhost:5000/match', json=partida)
     print(rqs.text)
+    
