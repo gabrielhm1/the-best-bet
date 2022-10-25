@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import requests
 
 #cria uma lista das partidas
 partidas = []
@@ -37,5 +38,8 @@ with open(r"C:\Users\trica\Downloads\bet.html", encoding="utf8") as fp:
             match_info = dict(dados, **odd_dict)
         partidas.append(match_info)
 
-print(partidas)
-        
+for partida in partidas:
+    print(partida)
+    rqs = requests.post('http://localhost:5000/match', json=partida)
+    print(rqs.text)
+  
