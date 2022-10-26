@@ -5,7 +5,7 @@ import requests
 partidas = []
 
 #obter html do site
-with open(r"C:\Users\trica\Downloads\bet.html", encoding="utf8") as fp:
+with open(r"C:\Users\caio2\Downloads\bet.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, 'html.parser')
     
     #localizar os dados necessários através de classes identificadoras e formatar para obter a saída desejada
@@ -22,8 +22,8 @@ with open(r"C:\Users\trica\Downloads\bet.html", encoding="utf8") as fp:
         }
         #encontrar os nomes dos times que vão se enfrentar
         times = item.find_all("div", class_="rcl-ParticipantFixtureDetailsTeam")
-        dados["host_team"] = times[0].text
-        dados["away_team"] = times[1].text
+        dados["host_team"] = times[0].text.replace("\n", "").replace(" ", "").replace("SãoPaulo", "São Paulo").replace("CuiabáEC", "Cuiabá").replace("RBBragantino", "Bragantino").replace("AtléticoGoianiense", "Atlético-GO").replace("AthleticoParanaense", "Athletico-PR").replace("AméricaMineiro", "América-MG").replace("AtléticoMineiro", "Atlético-MG")
+        dados["away_team"] = times[1].text.replace("\n", "").replace(" ", "").replace("SãoPaulo", "São Paulo").replace("CuiabáEC", "Cuiabá").replace("RBBragantino", "Bragantino").replace("AtléticoGoianiense", "Atlético-GO").replace("AthleticoParanaense", "Athletico-PR").replace("AméricaMineiro", "América-MG").replace("AtléticoMineiro", "Atlético-MG")
         
         #encontrar as odds para vitória de cada time e empate
         odds = {}
