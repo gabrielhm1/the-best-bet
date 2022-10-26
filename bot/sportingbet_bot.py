@@ -14,8 +14,8 @@ with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
             #"odd_visitante":123
         }
         times = item.find_all("div", class_="participant")
-        dados["host_team"] = times[0].text.replace(" ","")
-        dados["away_team"] = times[1].text.replace(" ","")
+        dados["host_team"] = times[0].text.replace(" ","").replace("SãoPaulo", "São Paulo").replace("Botafogo-RJ", "Botafogo").replace("RBBragantino", "Bragantino")
+        dados["away_team"] = times[1].text.replace(" ","").replace("SãoPaulo", "São Paulo").replace("Botafogo-RJ", "Botafogo").replace("RBBragantino", "Bragantino")
         
         odds = {}
         for index_odd,odd in enumerate(item.find_all("div", class_="option option-value ng-star-inserted")):
@@ -28,7 +28,7 @@ with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
                 odds["away_win"] = odd.text
                 break
             odds['company'] = 'sportingbet'
-            odd_dict = {'odds':[odds]}
+            odd_dict = {'odds':odds}
             match_info = dict(dados, **odd_dict)
         print(dados)
         partidas.append(match_info)
