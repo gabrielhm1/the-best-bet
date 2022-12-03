@@ -36,6 +36,6 @@ def add_match():
         else:
             return odd.insert_odd(item.id)
     except Exception as e:
-        return jsonify({'mensagem': 'Erro geral!'}), 500
+        return jsonify({'Message': 'General error!'}), 500
 
 

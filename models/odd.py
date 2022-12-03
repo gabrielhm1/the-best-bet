@@ -32,10 +32,10 @@ def insert_odd(id_match):
         if check_exist is None:
             db.session.add(odd)
             db.session.commit()
-            return jsonify({'mensagem': f'Odd adicionada a partida {id_match}!'}), 201
+            return jsonify({'Message': f'Odd added to match {id_match}!'}), 201
         else:
             db.session.commit()
-            return jsonify({'mensagem': f'Odd {odd.id} da partida {id_match} editada com sucesso!'}), 201
+            return jsonify({'Message': f'Odd {odd.id} from {id_match} successfully updated!'}), 201
 
     except Exception as e:
-        return jsonify({'mensagem': 'Erro no cadastro!'}), 500
+        return jsonify({'Message': 'Registration failed!'}), 500

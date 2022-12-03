@@ -7,16 +7,15 @@ with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
     for index,item in enumerate(soup.find_all("div", class_="grid-event-wrapper")):
         print("partida", index)
         dados = {
-            #"time1":"nome_time1",
-            #"time2":"nome_time2",
-            #"odd_mandante":123
-            #"odd_empate":123
-            #"odd_visitante":123
+            #"team1":"name_team1",
+            #"team2":"name_team2",
+            #"odd_host":123
+            #"odd_draw":123
+            #"odd_away":123
         }
         times = item.find_all("div", class_="participant")
-        dados["host_team"] = times[0].text.replace(" ","").replace("SãoPaulo", "São Paulo").replace("Botafogo-RJ", "Botafogo").replace("RBBragantino", "Bragantino")
-        dados["away_team"] = times[1].text.replace(" ","").replace("SãoPaulo", "São Paulo").replace("Botafogo-RJ", "Botafogo").replace("RBBragantino", "Bragantino")
-        
+        dados["host_team"] = times[0].text.replace(" ","").replace("PaísdeWales", "Wales").replace("Gales", "Wales").replace("Holanda", "Netherlands").replace("Inglaterra", "England").replace("Brasil", "Brazil").replace("Sérvia", "Serbia").replace("PaísdeGales", "Wales").replace("PaísesBaixos", "Netherlands").replace("Equador", "Equator").replace("Tunísia", "Tunisia").replace("Austrália", "Australia").replace("Polônia", "Poland").replace("ArábiaSaudita", "Saudi Arabia").replace("França", "France").replace("Dinamarca", "Denmark").replace("México", "Mexico").replace("Japão", "Japan").replace("CostaRica", "Costa Rica").replace("Bélgica", "Belgium").replace("Marrocos", "Morocco").replace("Croácia", "Croatia").replace("Canadá", "Canada").replace("Espanha", "Spain").replace("Alemanha", "Germany").replace("Camarões", "Cameroon").replace("CoreiadoSul", "South Korea").replace("Gana", "Ghana").replace("Suíça", "Switzerland").replace("Uruguai", "Uruguay").replace("EUA", "USA").replace("EstadosUnidos", "USA").replace("Irã", "Iran").replace("Catar", "Qatar").replace("CoréiadoSul", "South Korea").replace("Croácia", "Croatia")
+        dados["away_team"] = times[1].text.replace(" ","").replace("PaísdeWales", "Wales").replace("Gales", "Wales").replace("Holanda", "Netherlands").replace("Inglaterra", "England").replace("Brasil", "Brazil").replace("Sérvia", "Serbia").replace("PaísdeGales", "Wales").replace("PaísesBaixos", "Netherlands").replace("Equador", "Equator").replace("Tunísia", "Tunisia").replace("Austrália", "Australia").replace("Polônia", "Poland").replace("ArábiaSaudita", "Saudi Arabia").replace("França", "France").replace("Dinamarca", "Denmark").replace("México", "Mexico").replace("Japão", "Japan").replace("CostaRica", "Costa Rica").replace("Bélgica", "Belgium").replace("Marrocos", "Morocco").replace("Croácia", "Croatia").replace("Canadá", "Canada").replace("Espanha", "Spain").replace("Alemanha", "Germany").replace("Camarões", "Cameroon").replace("CoreiadoSul", "South Korea").replace("Gana", "Ghana").replace("Suíça", "Switzerland").replace("Uruguai", "Uruguay").replace("EUA", "USA").replace("EstadosUnidos", "USA").replace("Irã", "Iran").replace("Catar", "Qatar").replace("CoréiadoSul", "South Korea").replace("Croácia", "Croatia")
         odds = {}
         for index_odd,odd in enumerate(item.find_all("div", class_="option option-value ng-star-inserted")):
             print(index_odd,odd.text)

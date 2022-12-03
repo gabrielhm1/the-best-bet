@@ -5,32 +5,32 @@
 <body>
     <div class="container">
         <img src ="https://i.imgur.com/PmHa4a5.png">
-        <h2 style="color: rgb(255, 194, 11)">Brasileirão - Série A</h2>
-        <p style="font-style:italic">Selecione uma partida para ter acesso à calculadora de lucro garantido</p>            
+        <h2 style="color: rgb(255, 194, 11)">Soccer Cup Edition</h2>
+        <p style="font-style:italic">Select a match to access the profit calculator</p>            
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Partida</th>
-              <th>Melhor Vitória Mandante</th>
-              <th>Melhor Empate</th>
-              <th>Melhor Vitória Visitante</th>
+              <th>Match</th>
+              <th>Home team</th>
+              <th>Draw</th>
+              <th>Away team</th>
             </tr>
           </thead>
           <tbody>
             {% for item in content %}
                 <tr id="matchs">
                      <td><a href="/odds/{{ item.id}}">{{ item.host_team }} VS {{ item.away_team }}</a></td>
-                     <td><span>{{item.best_odd.host_win.company}}</span><span> - ODD {{item.best_odd.host_win.odd}}</span></td>
-                     <td><span>{{item.best_odd.draw.company}}</span><span> - ODD {{item.best_odd.draw.odd}}</td>
-                     <td><span>{{item.best_odd.away_win.company}}</span><span> - ODD {{item.best_odd.away_win.odd}}</td>
+                     <td><span>{{item.best_odd.host_win.company}}</span><span> - {{item.best_odd.host_win.odd}}</span></td>
+                     <td><span>{{item.best_odd.draw.company}}</span><span> - {{item.best_odd.draw.odd}}</td>
+                     <td><span>{{item.best_odd.away_win.company}}</span><span> - {{item.best_odd.away_win.odd}}</td>
                 </tr>
             {% endfor %}
           </tbody>
         </table>
     </div>
-    <h2 style="color: rgb(0, 176, 79)">Tabela de classificação</h2>
-    <div id="scoreaxis-widget-cb6a9" data-reactroot=""><iframe id="Iframe" src="https://www.scoreaxis.com/widget/standings-widget/648?lang=pt&amp;links=0&amp;font=8&amp;autoHeight=0&amp;inst=cb6a9" style="width:600px;height:900px;border:none;transition:all 300ms ease"></iframe>
-        <script>window.addEventListener("DOMContentLoaded",event=>{window.addEventListener("message",event=>{if(event.data.appHeight&&"cb6a9"==event.data.inst){let container=document.querySelector("#scoreaxis-widget-cb6a9 iframe");container&&(container.style.height=parseInt(event.data.appHeight)+"px")}},!1)});</script>
+    <h2 style="color: rgb(0, 176, 79)">Leaderboard</h2>
+    <div id="scoreaxis-widget-3f0c5" style="border-width:1px;border-color:rgba(0, 0, 0, 0.15);border-style:solid;border-radius:8px;padding:10px;background:rgb(255, 255, 255);width:100%" data-reactroot=""><iframe id="Iframe" src="https://www.scoreaxis.com/widget/standings-widget/732?font=0&amp;removeBorders=1&amp;inst=3f0c5" style="width:100%;border:none;transition:all 300ms ease"></iframe>
+      <script>window.addEventListener("DOMContentLoaded",event=>{window.addEventListener("message",event=>{if(event.data.appHeight&&"3f0c5"==event.data.inst){let container=document.querySelector("#scoreaxis-widget-3f0c5 iframe");container&&(container.style.height=parseInt(event.data.appHeight)+"px")}},!1)});</script>
     </div>
 </body>
 {% endblock %}

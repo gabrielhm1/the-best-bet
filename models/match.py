@@ -69,9 +69,9 @@ def insert_match():
     try:
         db.session.add(match)
         db.session.commit()
-        return jsonify({'mensagem': 'Cadastro Realizado!'}), 201
+        return jsonify({'Message': 'Registered!'}), 201
     except:
-        return jsonify({'mensagem': 'Erro no cadastro!'}), 500
+        return jsonify({'Message': 'Failure!'}), 500
 
 def update_match(match):
     odds_list = []
@@ -94,6 +94,6 @@ def update_match(match):
         match.odd = odds_list
         db.session.commit()
 
-        return jsonify({'mensagem': 'Match editado!'}), 201
+        return jsonify({'Message': 'Match updated!'}), 201
     except:
-        return jsonify({'mensagem': 'Erro ao atualizar dados!'}), 500
+        return jsonify({'Message': 'Failed to update data!'}), 500
