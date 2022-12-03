@@ -6,7 +6,7 @@ The Best Bet is an odds comparator (chance of an event occurring) for the main s
 2. Odds comparator
 3. "Sure profit"
 
-#  Time
+#  Team members
 1. Gabriel Henrique Marques Matos - Fullstack
 2. Yuri Junior da Silva Adriano - Scrum Master & Backend
 3. Caio Almeida Guimarães - Product Owner & Frontend

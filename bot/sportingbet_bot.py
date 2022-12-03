@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 partidas = []
 
-with open(r"C:\Users\caio2\Downloads\sportingbet.html", encoding="utf8") as fp:
+with open(r"sportingbet.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, 'html.parser')
     for index,item in enumerate(soup.find_all("div", class_="grid-event-wrapper")):
         print("partida", index)

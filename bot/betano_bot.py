@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 partidas = []
 
-with open(r"C:\Users\caio2\Downloads\betano.html", encoding="utf8") as fp:
+with open(r"betano.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, 'html.parser')
     
     aux = len(soup.find_all("tr", class_="events-list__grid__event"))

@@ -3,7 +3,7 @@ import requests
 
 partidas = []
 
-with open(r"C:\Users\caio2\Downloads\bet.html", encoding="utf8") as fp:
+with open("bet365.html", encoding="utf8") as fp:
     soup = BeautifulSoup(fp, 'html.parser')
     
     for index,item in enumerate(soup.find_all("div", class_="rcl-ParticipantFixtureDetailsAggregateScore")):
