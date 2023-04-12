@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo 'Building app..'
+                script {
+                    dockerImage = docker.build_registry
+                } 
             }
         }
 
