@@ -6,7 +6,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    dockerImage = docker.build_registry
+                    dockerapp = docker.build("app/tbb:latest","-f ./Dockerfile .")
                 } 
             }
         }
